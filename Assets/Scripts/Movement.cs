@@ -18,6 +18,11 @@ public class Movement : MonoBehaviour
         _jumps = _maxJumps;
     }
 
+    public void Update()
+    {
+        Jump();
+    }
+
     void FixedUpdate()
     {
         Move();
@@ -32,12 +37,18 @@ public class Movement : MonoBehaviour
 
     public void Jump()
     {
-        float Vertical = Input.GetAxisRaw("Vertical");
-        if (_jumps <= 0 || Vertical <= 0) { return; }
+        if (_jumps <= 0 || !Input.GetKeyDown(KeyCode.W)) { return; }
 
+        _canJump = false;
+        Invoke("EnableJumpAgain", 0.1f);
         _jumps--;
         _rb.velocity = new Vector2(_rb.velocity.x, 0);
         _rb.AddForce(transform.up * _thrust, ForceMode2D.Impulse);
+    }
+
+    public void EnableJumpAgain()
+    {
+        _canJump = true;
     }
 
     public void OnCollisionEnter2D(Collision2D other)

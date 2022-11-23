@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 400
-  _thrust: 10
+  _thrust: 15
   _maxJumps: 2
 --- !u!50 &1022917711
 Rigidbody2D:
