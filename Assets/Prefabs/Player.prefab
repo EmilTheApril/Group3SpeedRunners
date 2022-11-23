@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 7970889993434089828}
   - component: {fileID: 7970889993434089829}
   - component: {fileID: 7970889993434089850}
-  - component: {fileID: 7970889993434089851}
-  - component: {fileID: -1042588883097641190}
   - component: {fileID: 7749314381257997620}
   - component: {fileID: 6529009049582392531}
+  - component: {fileID: 7970889993434089851}
+  - component: {fileID: -1042588883097641190}
+  - component: {fileID: 604827483595715801}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -138,35 +139,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &7970889993434089851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7970889993434089848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b258cf1a029524c4eaed7d0257f8d854, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 500
-  _thrust: 15
-  _maxJumps: 2
-  _inputNum: 1
-  _canJump: 0
---- !u!114 &-1042588883097641190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7970889993434089848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9128cf24c874afd4ab8f17a277ddfcfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!120 &7749314381257997620
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -283,8 +255,54 @@ DistanceJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 1
+  m_Distance: 7.071068
   m_MaxDistanceOnly: 0
+--- !u!114 &7970889993434089851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7970889993434089848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b258cf1a029524c4eaed7d0257f8d854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 500
+  _thrust: 15
+  _maxJumps: 2
+  _inputNum: 1
+  _canJump: 0
+  _canMove: 1
+--- !u!114 &-1042588883097641190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7970889993434089848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9128cf24c874afd4ab8f17a277ddfcfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &604827483595715801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7970889993434089848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a0226d5265754caeadf4d35af354caf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useUpgrade: 32
+  radius: 5
+  explosionForce: 500
+  pickupEffect: {fileID: 0}
 --- !u!1 &7970889994304708827
 GameObject:
   m_ObjectHideFlags: 0
