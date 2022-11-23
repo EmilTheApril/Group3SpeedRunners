@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    [SerializeField] private GameObject[] players;
+    private GameObject[] players;
 
     public void Start()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
+    }
+
+    public void Update()
+    {
+        transform.position = FindCameraPosition();
     }
 
     public Vector3 FindCameraPosition()
