@@ -10,6 +10,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private int _maxJumps;
     [SerializeField] private string _inputNum;
     [SerializeField] private bool _canJump;
+    [SerializeField] private bool _canMove = true;
 
     private int _jumps;
     private Rigidbody2D _rb;
@@ -36,6 +37,8 @@ public class Movement : MonoBehaviour
         float Horizontal = Input.GetAxisRaw("Horizontal" + _inputNum);
 
         //Sets velocity to horizontal axis direction * speed. Horizontal = -1 when A is pressed and 1 when D is pressed.
+        if (!_canMove) { return; }
+
         _rb.velocity = new Vector2(Horizontal * transform.right.x * _speed * Time.deltaTime, _rb.velocity.y);
     }
 
@@ -54,6 +57,17 @@ public class Movement : MonoBehaviour
 
         //Calls EnableJump after 0.2 sec
         Invoke("EnableJump", 0.2f);
+    }
+
+    public void DisableMove()
+    {
+        _canMove = false;
+        Invoke("EnableMove", 1f);
+    }
+
+    public void EnableMove()
+    {
+        _canMove = true;
     }
 
     public void EnableJump()
