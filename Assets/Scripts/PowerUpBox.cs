@@ -10,9 +10,12 @@ public class PowerUpBox : MonoBehaviour
     public GameObject pickupEffect;
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // Removes gameObject temporarily
         gameObject.SetActive(false);
+        // Respawner
         Invoke("Respawn", 3f);
 
+        // If a player enters the collider pickup the object
         if (other.CompareTag("Player"))
         {
             Pickup();
@@ -25,22 +28,16 @@ public class PowerUpBox : MonoBehaviour
 
         // Spawn cool effect
         GameObject expl = Instantiate(pickupEffect, transform.position, transform.rotation);
-
+        // Destroy object after 2f
         Destroy(expl, 2f);
 
         // Apply random upgrade to player
         // INSERT UPGRADES HERE
 
-        // Remove the object and respawn later
     }
-
+    // Respawn object
     public void Respawn()
     {
         gameObject.SetActive(true);
-    }
-
-    public void Test()
-    {
-        Debug.Log("ddd");
     }
 }
