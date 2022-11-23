@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    //SerializeField does so you can edit an private variable in the inspector.
     [SerializeField] private float _speed;
     [SerializeField] private float _thrust;
     [SerializeField] private int _maxJumps;
-    private int _jumps;
-    private bool _canJump;
+    [SerializeField] private string _inputNum;
+    [SerializeField] private bool _canJump;
+    [SerializeField] private bool _canMove = true;
 
+    private int _jumps;
     private Rigidbody2D _rb;
 
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _jumps = _maxJumps;
+    }
+
+    public void Update()
+    {
+        Jump();
     }
 
     void FixedUpdate()
@@ -25,26 +33,55 @@ public class Movement : MonoBehaviour
 
     public void Move()
     {
-        float Horizontal = Input.GetAxisRaw("Horizontal");
+        //Gets Horizontal input (A, D, Left Arrow, Right Arrow, Joy stick X Axis)
+        float Horizontal = Input.GetAxisRaw("Horizontal" + _inputNum);
+
+        //Sets velocity to horizontal axis direction * speed. Horizontal = -1 when A is pressed and 1 when D is pressed.
+        if (!_canMove) { return; }
 
         _rb.velocity = new Vector2(Horizontal * transform.right.x * _speed * Time.deltaTime, _rb.velocity.y);
     }
 
+    //Makes player jump
     public void Jump()
     {
-        float Vertical = Input.GetAxisRaw("Vertical");
-        if (_jumps <= 0 || Vertical <= 0) { return; }
+        //Guard clause. It checks the opposite of all criteria, and returns if one is true.
+        if (_jumps <= 0 || Input.GetAxisRaw("Vertical" + _inputNum) <= 0 || !_canJump) { return; }
 
         _jumps--;
         _rb.velocity = new Vector2(_rb.velocity.x, 0);
+
+        //Adds a force upwards. ForceMode2D.Impulse, takes mass into the calculations. Mass can be changed in the rigidbody.
         _rb.AddForce(transform.up * _thrust, ForceMode2D.Impulse);
+        _canJump = false;
+
+        //Calls EnableJump after 0.2 sec
+        Invoke("EnableJump", 0.2f);
     }
 
-    public void OnCollisionEnter2D(Collision2D other)
+    public void DisableMove()
     {
-        if (other.gameObject.CompareTag("Ground"))
+        _canMove = false;
+        Invoke("EnableMove", 1f);
+    }
+
+    public void EnableMove()
+    {
+        _canMove = true;
+    }
+
+    public void EnableJump()
+    {
+        _canJump = true;
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        //If player touches ground, reset jump variables
+        if (other.CompareTag("Ground"))
         {
             _jumps = _maxJumps;
+            _canJump = true;
         }
     }
 }
