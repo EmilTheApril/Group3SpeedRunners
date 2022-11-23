@@ -4,65 +4,40 @@ using UnityEngine;
 
 public class Node : MonoBehaviour
 {
-    private LineRenderer lineRend; // Creates a variable for the linerenderer.
-    private DistanceJoint2D distJoint; // Creates a variable for the distance joint.
-    private Node selectedNode; // Creates a variable for the Node-type gameObject.
-
+    private GameObject player; // Creates a variable for the player.
+    private Grapple grappleScript; // Creates a variable for the Grapple script.
+    private Node node; // Creates a variable for the node.
 
     void Start()
     {
-        // References the components on our gameObject.
-        lineRend = GetComponent<LineRenderer>();
-        distJoint = GetComponent<DistanceJoint2D>();
+        // Finds the gameObject with the Player tag.
+        player = GameObject.FindGameObjectWithTag("Player");
 
-        // This prevents the player from accidentally grappling onto a random object, when the game starts.
-        lineRend.enabled = false;
-        distJoint.enabled = false;
-        selectedNode = null;
+        // Gets the grapple script attached to the player.
+        grappleScript = player.GetComponent<Grapple>();
+
+        // The player will not grapple onto something when the game starts, therefore node is sat to null.
+        node = null;
     }
 
-    void Update()
+    public void OnMouseDown() // This method runs the action for when a node is selected.
     {
-        // This will constantly check if the player grapples onto a gameObject, which we will call a node for reference.
+        // The node clicked on will be set to this particular node gameObject.
+        node = this;
 
-        NodeBehavior(); 
+        // Access and runs the SelectNode method from the Grapple script.
+        grappleScript.SelectNode(node);
+
 
     }
 
-    private void SelectNode(Node node) // This method will let the player select a node to grapple onto. The Node is the type we wish to use.
+    public void OnMouseUp() // This method runs the action for when no node is selected.
     {
-        selectedNode = node;
-    }
-
-    private void DeselectNode() // This method will deselect the selectedNode when it runs.
-    {
-        selectedNode = null;
-    }
-
-    private void NodeBehavior() 
-    {
-        // This will make sure nothing happens, if the player has not selected a node.
-        if (selectedNode == null)
-        {
-            lineRend.enabled = false;
-            distJoint.enabled = false;
-
-            return;
-        }
-
-        // If a node has been selected, the line will be rendered and the distant joint will be enabled as well. 
-        lineRend.enabled = true;
-        distJoint.enabled = true;
-
-        // This will change the connected Rigidbody component's node to the current selected one on our player. 
-        distJoint.connectedBody = selectedNode.GetComponent<Rigidbody2D>();
-
-        // If the player has selected a node, two positions for the linerenderer will be created.
-        if(selectedNode != null)
-        {
-            lineRend.SetPosition(0, transform.position);
-            lineRend.SetPosition(1, selectedNode.transform.position);
-        }
+        // No node will be clicked anymore, therefore it is sat to null.
+        node = null;
+        
+        // Access and runs the DeselectNode method from the Grapple script.
+        grappleScript.DeselectNode();
     }
 }
 
