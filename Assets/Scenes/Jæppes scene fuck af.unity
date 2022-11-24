@@ -20412,6 +20412,10 @@ PrefabInstance:
       propertyPath: _boostWillLast
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7970889994304708827, guid: e2767739e499a42008f6ffe98215cd18, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 604827483595715801, guid: e2767739e499a42008f6ffe98215cd18, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e2767739e499a42008f6ffe98215cd18, type: 3}
@@ -20640,7 +20644,7 @@ GameObject:
   - component: {fileID: 358112613}
   - component: {fileID: 358112612}
   m_Layer: 5
-  m_Name: Upgrade icon
+  m_Name: Upgrade icon Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21149,7 +21153,7 @@ GameObject:
   - component: {fileID: 864107714}
   - component: {fileID: 864107713}
   m_Layer: 5
-  m_Name: Upgrade icon
+  m_Name: Upgrade icon Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22334,7 +22338,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1762831173
 BoxCollider2D:
