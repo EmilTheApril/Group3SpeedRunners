@@ -9,11 +9,13 @@ public class CameraMovement : MonoBehaviour
     private int _playerInFirstPlace;
     private int _pointsReachedPlayer1 = 0;
     private int _pointsReachedPlayer2 = 0;
+    [SerializeField] private float _maxZoom;
     [SerializeField] private GameObject[] _players;
 
     public void Update()
     {
         transform.position = FindCameraPosition();
+        ZoomCamera();
     }
 
     public Vector3 FindCameraPosition()
@@ -26,11 +28,21 @@ public class CameraMovement : MonoBehaviour
             Pos.y += player.transform.position.y;
         }
         int firstPlacePlayer = FindPlayerInFirstPlace();
-        Debug.Log("index: " + firstPlacePlayer);
         Pos.x += _players[firstPlacePlayer].transform.position.x;
         Pos.y += _players[firstPlacePlayer].transform.position.y;
 
         return new Vector3(Pos.x/(_players.Length + 1), Pos.y/(_players.Length + 1), Pos.z);
+    }
+
+    public void ZoomCamera()
+    {
+        float DistBetweenPlayers = Vector2.Distance(_players[0].transform.position, _players[1].transform.position);
+        float zoom = 0;
+        if ((0.125f * DistBetweenPlayers) + 10 <= _maxZoom)
+        {
+            zoom = (0.2f * DistBetweenPlayers) + 10;
+            Camera.main.GetComponent<Camera>().orthographicSize = zoom;
+        }
     }
 
     public int FindPlayerInFirstPlace()
@@ -38,7 +50,23 @@ public class CameraMovement : MonoBehaviour
         float Player1Dist = Vector2.Distance(_points[_pointsReachedPlayer1].transform.position, _players[0].transform.position);
         float Player2Dist = Vector2.Distance(_points[_pointsReachedPlayer2].transform.position, _players[1].transform.position);
 
-        Debug.Log(Player1Dist + " : " + Player2Dist);
+        if (Player1Dist <= 3f)
+        {
+            if (_pointsReachedPlayer1 < (_points.Length - 1))
+            {
+                _pointsReachedPlayer1++;
+            }
+            else _pointsReachedPlayer1 = 0;
+        }
+
+        if (Player2Dist <= 3f)
+        {
+            if (_pointsReachedPlayer2 < (_points.Length - 1))
+            {
+                _pointsReachedPlayer2++;
+            }
+            else _pointsReachedPlayer2 = 0;
+        }
 
         //Both at same checkpoint
         if (_pointsReachedPlayer1 == _pointsReachedPlayer2)
@@ -65,23 +93,6 @@ public class CameraMovement : MonoBehaviour
             return 1;
         }
 
-        if (Player1Dist <= 3f)
-        {
-            if (_pointsReachedPlayer1 < _points.Length)
-            {
-                _pointsReachedPlayer1++;
-            }
-            else _pointsReachedPlayer1 = 0;
-        }
-
-        if (Player2Dist <= 3f)
-        {
-            if (_pointsReachedPlayer2 < _points.Length)
-            {
-                _pointsReachedPlayer2++;
-            }
-            else _pointsReachedPlayer2 = 0;
-        }
         return 0;
     }
 }

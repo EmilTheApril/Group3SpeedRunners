@@ -11,6 +11,14 @@ public class Projectile : MonoBehaviour
     public float radius;
     public float explosionForce;
     public GameObject pickupEffect;
+    public Rigidbody2D rb;
+    public int dir = 0;
+
+
+    public void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     private void Update()
     {
@@ -36,7 +44,6 @@ public class Projectile : MonoBehaviour
                     {
                         hit.GetComponent<Movement>().DisableMove();
                     }
-
                     Vector2 dir = (hit.transform.position - transform.position);
                     dir.Normalize();
                     rb.AddForce(dir * explosionForce, ForceMode2D.Force);
@@ -45,6 +52,9 @@ public class Projectile : MonoBehaviour
                     // Destroy object after 2f
                     Destroy(expl, 2f);
                 }
+
+                
+
             }
     }
 
