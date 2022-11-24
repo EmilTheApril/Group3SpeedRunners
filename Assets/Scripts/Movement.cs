@@ -46,7 +46,7 @@ public class Movement : MonoBehaviour
     public void Jump()
     {
         //Guard clause. It checks the opposite of all criteria, and returns if one is true.
-        if (_jumps <= 0 || Input.GetAxisRaw("Vertical" + _inputNum) <= 0 || !_canJump) { return; }
+        if (_jumps <= 0 || !Input.GetKeyDown($"joystick {_inputNum} button " + 1) || !_canJump) { return; }
 
         _jumps--;
         _rb.velocity = new Vector2(_rb.velocity.x, 0);
