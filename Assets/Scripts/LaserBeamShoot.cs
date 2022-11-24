@@ -10,10 +10,15 @@ public class LaserBeamShoot : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.D) && (canUse == true)) 
-            Shoot(1);
-        if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.A) && (canUse == true)) 
-            Shoot(-1);
+        int dir = 0;
+        if (GetComponent<SpriteRenderer>().flipX)
+        {
+            dir = -1;
+        }
+        else dir = 1;
+
+        if (Input.GetKeyDown($"joystick {GetComponent<Movement>()._inputNum} button " + 2) && (canUse == true))
+            Shoot(dir);
     }
 
     

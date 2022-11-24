@@ -20732,7 +20732,6 @@ MonoBehaviour:
   grenade: {fileID: 21300000, guid: 8c5f32cb76321544780a1feac58bdd1e, type: 3}
   laser: {fileID: 21300000, guid: 940f695828edb704ca2c2519de9cbb84, type: 3}
   questionMark: {fileID: 21300000, guid: 0a5f2bd0727094e428f196207cddc333, type: 3}
-  boxScript: {fileID: 1762831170}
   imgNumberCount: 0
 --- !u!114 &358112613
 MonoBehaviour:
@@ -21075,11 +21074,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07cebacb140ff411cadc12a16ff083b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  banana: {fileID: 21300000, guid: 145a028cbc789e74e8dee3121b90e748, type: 3}
+  banana: {fileID: 21300000, guid: cf64f0cc608e19b4ab53b966f50c82bf, type: 3}
   grenade: {fileID: 21300000, guid: 8c5f32cb76321544780a1feac58bdd1e, type: 3}
   laser: {fileID: 21300000, guid: 940f695828edb704ca2c2519de9cbb84, type: 3}
   questionMark: {fileID: 21300000, guid: 0a5f2bd0727094e428f196207cddc333, type: 3}
-  boxScript: {fileID: 1762831170}
   imgNumberCount: 0
 --- !u!114 &864107714
 MonoBehaviour:
@@ -21160,7 +21158,8 @@ MonoBehaviour:
   grappleRope: {fileID: 497270887}
   grappleToAll: 1
   grappableLayerNumber: 0
-  m_camera: {fileID: 2090330034}
+  grapPoint: {x: 0, y: 0, z: 0}
+  movement: {fileID: 0}
   gunHolder: {fileID: 84295923}
   gunPivot: {fileID: 1862842022}
   firePoint: {fileID: 303780347}
@@ -22121,6 +22120,7 @@ MonoBehaviour:
   pickupEffect: {fileID: 0}
   imgScript: {fileID: 864107713}
   uiName: 
+  BoxExpAni: {fileID: 4300413549383528644, guid: af62cb467f0a4f0428bc01f9ae1fe056, type: 3}
 --- !u!212 &1762831171
 SpriteRenderer:
   m_ObjectHideFlags: 0

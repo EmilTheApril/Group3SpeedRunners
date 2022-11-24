@@ -10,14 +10,19 @@ public class BananaPeelSpawner : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.D) && (canUse == true)) 
-            BananaLauncher(-1);
-        if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.A) && (canUse == true)) 
-            BananaLauncher(1);
+        int dir = 0;
+        if (GetComponent<SpriteRenderer>().flipX)
+        {
+            dir = -1;
+        }
+        else dir = 1;
+
+        if (Input.GetKeyDown($"joystick {GetComponent<Movement>()._inputNum} button " + 2) && (canUse == true))
+            BananaLauncher(-dir);
     }
     public void BananaLauncher(int _direction)
     {
-        Vector2 _spawner = new Vector2(transform.position.x + (_direction * 2f), transform.position.y);
+        Vector2 _spawner = new Vector2(transform.position.x, transform.position.y+0.5f);
         Instantiate(_bananaPrefab, _spawner, Quaternion.identity);
         canUse = false;
     }

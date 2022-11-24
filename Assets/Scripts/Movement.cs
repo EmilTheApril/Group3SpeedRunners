@@ -85,7 +85,7 @@ public class Movement : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().flipX = true;
         }
-        else GetComponent<SpriteRenderer>().flipX = false;
+        else if (Horizontal > 0) GetComponent<SpriteRenderer>().flipX = false;
 
         //Sets velocity to horizontal axis direction * speed. Horizontal = -1 when A is pressed and 1 when D is pressed.
         if (!_canMove) { return false; }
@@ -127,6 +127,7 @@ public class Movement : MonoBehaviour
 
     public void DisableMove(float time)
     {
+        _rb.velocity = Vector2.zero;
         _canMove = false;
         Invoke("EnableMove", time);
     }
@@ -138,12 +139,14 @@ public class Movement : MonoBehaviour
 
     public void DisableJump(float time)
     {
+        _jumps = 0;
         _canJump = false;
         Invoke("EnableJump", time);
     }
 
     public void EnableJump()
     {
+        _jumps = _maxJumps;
         _canJump = true;
     }
 
@@ -173,10 +176,6 @@ public class Movement : MonoBehaviour
             _jumps = _maxJumps;
             _canJump = true;
         }
-        if(other.CompareTag("laser"))
-            DisableMove(1);
-        if (other.CompareTag("Banana"))
-            DisableMove(1);
     }
     public void OnTriggerStay2D(Collider2D other)
     {

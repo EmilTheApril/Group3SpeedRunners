@@ -10,7 +10,7 @@ public class ImageUIPowerup : MonoBehaviour
     public Sprite grenade;
     public Sprite laser;
     public Sprite questionMark;
-    public PowerUpBox boxScript;
+ 
     public int imgNumberCount;
 
     public void ChangeImage()

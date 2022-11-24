@@ -25,6 +25,11 @@ public class LaserBeam : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col)
     {
         GameObject freeze = Instantiate(freezeEffect, transform.position, transform.rotation);
+        if (col.transform.GetComponent<Movement>() != null)
+        {
+            col.transform.GetComponent<Movement>().DisableMove(1);
+            col.transform.GetComponent<Movement>().DisableJump(1);
+        }
         Destroy(freeze, 1f);
         
         Destroy(gameObject);
