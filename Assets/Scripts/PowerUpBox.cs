@@ -12,11 +12,12 @@ public class PowerUpBox : MonoBehaviour
     private int _randomNumber;
     public ImageUIPowerup imgScript;
     public string uiName;
-
+    public GameObject BoxExpAni;
     private void OnTriggerEnter2D(Collider2D other)
     {
         // Removes gameObject temporarily
         gameObject.SetActive(false);
+        GameObject BoxExpAni = Instantiate(this.BoxExpAni, transform.position, transform.rotation);
         // Respawner
         Invoke("Respawn", 3f);
 
