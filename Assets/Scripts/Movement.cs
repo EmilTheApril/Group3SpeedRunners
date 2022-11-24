@@ -154,6 +154,7 @@ public class Movement : MonoBehaviour
         //If player touches ground, reset jump variables
         if (other.CompareTag("Ground"))
         {
+            anim.SetBool("isAirborne", false);
             _jumps = _maxJumps;
             _canJump = true;
         }
