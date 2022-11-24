@@ -10,6 +10,7 @@ public class LaserBeam : MonoBehaviour
     public float force;
     public Rigidbody2D rb;
     public int dir = 0;
+    
 
     public void Start()
     {
@@ -24,7 +25,8 @@ public class LaserBeam : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col)
     {
         GameObject freeze = Instantiate(freezeEffect, transform.position, transform.rotation);
-        Destroy(freeze, 2f);
+        Destroy(freeze, 1f);
+        
         Destroy(gameObject);
     } 
 }
