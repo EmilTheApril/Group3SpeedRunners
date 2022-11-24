@@ -7,7 +7,12 @@ using UnityEngine;
  * Jeppe */
 public class PowerUpBox : MonoBehaviour
 {
+
     public GameObject pickupEffect;
+    private int _randomNumber;
+    public ImageUIPowerup imgScript;
+    public string uiName;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         // Removes gameObject temporarily
@@ -18,18 +23,19 @@ public class PowerUpBox : MonoBehaviour
         // If a player enters the collider pickup the object
         if (other.CompareTag("Player"))
         {
+            /*if (other.GetComponent<Movement>()._)
+            {
+
+            }*/
+
             Pickup();
+            ChangeImg();
         }
     }
 
     void Pickup ()
     {
         Debug.Log("Powerup picked up");
-
-        // Spawn cool effect
-        GameObject expl = Instantiate(pickupEffect, transform.position, transform.rotation);
-        // Destroy object after 2f
-        Destroy(expl, 2f);
 
         // Apply random upgrade to player
         // INSERT UPGRADES HERE
@@ -39,5 +45,11 @@ public class PowerUpBox : MonoBehaviour
     public void Respawn()
     {
         gameObject.SetActive(true);
+    }
+    public void ChangeImg()
+    {
+        int rand = Random.Range(0, 3);
+        GameObject.Find("Upgrade icon" + uiName).GetComponent<ImageUIPowerup>().imgNumberCount = rand;
+        _randomNumber = rand;
     }
 }
