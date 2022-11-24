@@ -8,9 +8,13 @@ public class ScoreText : MonoBehaviour
 {
     public TextMeshProUGUI textDisplay;
 
+    public void Update()
+    {
+        DisplayScore();
+    }
+
     void DisplayScore()
     {
-        textDisplay.text = "Player 1:" + MatchStats.instance.player1;
-        textDisplay.text = "Player 2:" + MatchStats.instance.player2;
+        textDisplay.text = $"Player 1: {MatchStats.instance.player1} \nPlayer 2: {MatchStats.instance.player2}";
     }
 }

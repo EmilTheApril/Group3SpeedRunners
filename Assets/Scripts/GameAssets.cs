@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class GameAssets : MonoBehaviour
 {
-    private static GameAssets _i;
-
-    public static GameAssets i
-    {
-        get {
-            if (_i == null) _i = Instantiate(Resources.Load<GameAssets>("GameAssets"));
-            return _i;
-        }
-    }
+    public static GameAssets i;
 
     public SoundAudioClip[] soundAudioClipArray;
+
+    public void Awake()
+    {
+        if (i == null)
+        {
+            i = this;
+        }
+    }
 
     [System.Serializable] // to make it show in the editor
     public class SoundAudioClip // to store both an audio clip and a sound
