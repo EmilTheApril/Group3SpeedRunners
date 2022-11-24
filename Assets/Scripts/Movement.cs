@@ -173,6 +173,10 @@ public class Movement : MonoBehaviour
             _jumps = _maxJumps;
             _canJump = true;
         }
+        if(other.CompareTag("laser"))
+            DisableMove(1);
+        if (other.CompareTag("Banana"))
+            DisableMove(1);
     }
     public void OnTriggerStay2D(Collider2D other)
     {
@@ -183,9 +187,5 @@ public class Movement : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("laser"))
-            DisableMove(1);
-    }
+    
 }

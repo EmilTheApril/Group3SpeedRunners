@@ -28,7 +28,7 @@ public class ImageUIPowerup : MonoBehaviour
                 GetComponent<Image>().sprite = laser;
                 break;
             case 3:
-                GetComponent<Image>().sprite = grenade;
+                GetComponent<Image>().sprite = questionMark;
                 break;
             default:
                 Debug.Log("Error");
