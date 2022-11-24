@@ -17,7 +17,7 @@ public class LaserBeamShoot : MonoBehaviour
         }
         else dir = 1;
 
-        if (Input.GetKeyDown(KeyCode.Space) && (canUse == true))
+        if (Input.GetKeyDown($"joystick {GetComponent<Movement>()._inputNum} button " + 2) && (canUse == true))
             Shoot(dir);
     }
 

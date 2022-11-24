@@ -20,9 +20,9 @@ public class ShootProjectile : MonoBehaviour
         }
         else dir = 1;
 
-        if (Input.GetKeyDown(KeyCode.Space) && dir == 1 && (canUse == true))
+        if (Input.GetKeyDown($"joystick {GetComponent<Movement>()._inputNum} button " + 2) && dir == 1 && (canUse == true))
             Fire(dir, -60);
-        if (Input.GetKeyDown(KeyCode.Space) && dir == -1 && (canUse == true))
+        if (Input.GetKeyDown($"joystick {GetComponent<Movement>()._inputNum} button " + 2) && dir == -1 && (canUse == true))
             Fire(dir, 60);
     }
 

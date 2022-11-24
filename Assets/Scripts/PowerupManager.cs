@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PowerupManager : MonoBehaviour
 {
-    public KeyCode usePowerup = KeyCode.Space;
     public LaserBeamShoot laserScript;
     public BananaPeelSpawner bananaScript;
     public ShootProjectile grenadeScript;
@@ -14,7 +13,7 @@ public class PowerupManager : MonoBehaviour
 
     private void Update()
     {
-      if(Input.GetKey(usePowerup))
+      if(Input.GetKeyDown($"joystick {GetComponent<Movement>()._inputNum} button " + 2))
         {
             GameObject.Find("Upgrade icon" + uiName).GetComponent<ImageUIPowerup>().imgNumberCount = 3;
             GameObject.Find("Upgrade icon" + uiName).GetComponent<ImageUIPowerup>().ChangeImage();
