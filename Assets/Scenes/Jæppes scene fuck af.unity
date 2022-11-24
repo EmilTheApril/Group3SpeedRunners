@@ -20442,6 +20442,19 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 7970889993434089850, guid: e2767739e499a42008f6ffe98215cd18, type: 3}
   m_PrefabInstance: {fileID: 84295921}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &84295937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84295922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c929fc222b89184e9bd03f8cded49bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProjectilePrefab: {fileID: 1619184697638583889, guid: dc30e7e47fed2ae46aed30429f10125e, type: 3}
 --- !u!1001 &167198573
 PrefabInstance:
   m_ObjectHideFlags: 0
