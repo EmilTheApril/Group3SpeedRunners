@@ -11,8 +11,8 @@ public class GunGrapple : MonoBehaviour
     [SerializeField] private bool grappleToAll = false;
     [SerializeField] private int grappableLayerNumber = 9;
 
-    [Header("Main Camera:")]
-    public Camera m_camera;
+    public Vector3 grapPoint;
+    public Movement movement;
 
     [Header("Transform Ref:")]
     public Transform gunHolder;
@@ -59,11 +59,12 @@ public class GunGrapple : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown($"joystick {movement._inputNum} button " + 6))
         {
-            SetGrapplePoint();
+            //SetGrapplePoint();
+            ShootGrapple();
         }
-        else if (Input.GetKey(KeyCode.Mouse0))
+        else if (Input.GetKey($"joystick {movement._inputNum} button " + 6))
         {
             if (grappleRope.enabled)
             {
@@ -71,7 +72,7 @@ public class GunGrapple : MonoBehaviour
             }
             else
             {
-                Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 mousePos = grapPoint;
                 RotateGun(mousePos, true);
             }
 
@@ -85,7 +86,7 @@ public class GunGrapple : MonoBehaviour
                 }
             }
         }
-        else if (Input.GetKeyUp(KeyCode.Mouse0))
+        else if (Input.GetKeyUp($"joystick {movement._inputNum} button " + 6))
         {
             grappleRope.enabled = false;
             m_springJoint2D.enabled = false;
@@ -93,9 +94,29 @@ public class GunGrapple : MonoBehaviour
         }
         else
         {
-            Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos = grapPoint;
             RotateGun(mousePos, true);
         }
+    }
+
+    public void ShootGrapple()
+    {
+        float Horizontal = Input.GetAxisRaw("Horizontal" + movement._inputNum);
+        float Vertical = Input.GetAxisRaw("Vertical" + movement._inputNum);
+
+        Vector2 dir = new Vector2(Horizontal, Vertical);
+
+        if (Input.GetKeyDown($"joystick {movement._inputNum} button " + 6))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, 1, 0), dir, Mathf.Infinity);
+            Debug.DrawRay(transform.position + new Vector3(0, 1, 0), dir, Color.red);
+
+            grapPoint = hit.transform.position;
+            grapplePoint = hit.point;
+            grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
+            grappleRope.enabled = true;
+        }
+        //else if (Input.GetKeyUp($"joystick {GetComponent<Movement>()._inputNum} button " + 6)) DeselectNode();
     }
 
     void RotateGun(Vector3 lookPoint, bool allowRotationOverTime)
@@ -115,7 +136,7 @@ public class GunGrapple : MonoBehaviour
 
     void SetGrapplePoint()
     {
-        Vector2 distanceVector = m_camera.ScreenToWorldPoint(Input.mousePosition) - gunPivot.position;
+        Vector2 distanceVector = grapPoint - gunPivot.position;
         if (Physics2D.Raycast(firePoint.position, distanceVector.normalized))
         {
             RaycastHit2D _hit = Physics2D.Raycast(firePoint.position, distanceVector.normalized);

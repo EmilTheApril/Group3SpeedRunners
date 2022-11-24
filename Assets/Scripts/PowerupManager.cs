@@ -12,7 +12,14 @@ public class PowerupManager : MonoBehaviour
     public int _randomNumber;
     public Movement movement;
 
-    
+    private void Update()
+    {
+      if(Input.GetKey(usePowerup))
+        {
+            GameObject.Find("Upgrade icon" + uiName).GetComponent<ImageUIPowerup>().imgNumberCount = 3;
+            GameObject.Find("Upgrade icon" + uiName).GetComponent<ImageUIPowerup>().ChangeImage();
+        }
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("PowerupBox"))

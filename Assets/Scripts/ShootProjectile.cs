@@ -23,7 +23,7 @@ public class ShootProjectile : MonoBehaviour
     // Update is called once per frame
     public void Fire(int dir, int angle)
     {
-        Vector2 spawnPos = new Vector2(transform.position.x + (dir * 1), transform.position.y);
+        Vector2 spawnPos = new Vector2(transform.position.x + (dir * 1), transform.position.y+1);
         GameObject Bullet = Instantiate(ProjectilePrefab, spawnPos, Quaternion.identity);
         Bullet.GetComponent<Projectile>().dir = dir;
         Bullet.transform.Rotate(0,0,angle);
