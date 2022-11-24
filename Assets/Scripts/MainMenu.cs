@@ -5,6 +5,14 @@ using UnityEngine.SceneManagement; // Making it possible to use Unity's own scen
 
 public class MainMenu : MonoBehaviour
 {
+    private void Update()
+    {
+        if (Input.GetKeyDown($"joystick {1} button " + 1))
+        {
+            SceneManager.LoadScene("Level Emil");
+        }
+    }
+
     public void StartGame()
     {
         SceneManager.LoadScene("Level Emil");

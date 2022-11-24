@@ -22,10 +22,14 @@ public class Movement : MonoBehaviour
     private int _jumps;
     private Rigidbody2D _rb;
 
-    void Start()
+    private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _jumps = _maxJumps;
+    }
+
+    void Start()
+    {
         _boosting = false;
         anim = GetComponent<Animator>();
     }
@@ -101,7 +105,8 @@ public class Movement : MonoBehaviour
     public void Jump()
     {
         //Guard clause. It checks the opposite of all criteria, and returns if one is true.
-        if (!_canJump || _jumps <= 0) { return; }
+        if (!_canJump) { return; }
+        if (_jumps <= 0) { return; }
         if (!Input.GetKeyDown($"joystick {_inputNum} button " + 1)) { return; }
         SoundManager.PlaySound(SoundManager.Sound.Jump);
 
@@ -113,11 +118,10 @@ public class Movement : MonoBehaviour
         _rb.AddForce(transform.up * _thrust, ForceMode2D.Impulse);
         _canJump = false;
 
-
         Invoke("CanDetectJump", 0.1f);
 
         //Calls EnableJump after 0.2 sec
-        Invoke("EnableJump", 0.2f);
+        Invoke("EnableJumpInJump", 0.2f);
     }
 
     public void CanDetectJump()
@@ -142,6 +146,11 @@ public class Movement : MonoBehaviour
         _jumps = 0;
         _canJump = false;
         Invoke("EnableJump", time);
+    }
+
+    public void EnableJumpInJump()
+    {
+        _canJump = true;
     }
 
     public void EnableJump()
@@ -182,9 +191,7 @@ public class Movement : MonoBehaviour
         if (other.tag == "Speedboost")
         {
             _boosting = true;
-            _speed = 1000;
+            _speed = 700;
         }
     }
-
-    
 }

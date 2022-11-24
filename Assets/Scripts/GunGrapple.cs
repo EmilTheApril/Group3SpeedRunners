@@ -105,6 +105,7 @@ public class GunGrapple : MonoBehaviour
         float Vertical = Input.GetAxisRaw("Vertical" + movement._inputNum);
 
         Vector2 dir = new Vector2(Horizontal, Vertical);
+        dir.Normalize();
 
         if (Input.GetKeyDown($"joystick {movement._inputNum} button " + 6))
         {
