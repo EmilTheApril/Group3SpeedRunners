@@ -7,10 +7,15 @@ public class Movement : MonoBehaviour
     //SerializeField does so you can edit an private variable in the inspector.
     [SerializeField] private float _speed;
     [SerializeField] private float _thrust;
+    [SerializeField] private float _boostTimer;
+    [SerializeField] private float _boostWillLast;
     [SerializeField] private int _maxJumps;
     [SerializeField] private string _inputNum;
     [SerializeField] private bool _canJump;
+    [SerializeField] private bool _boosting;
     [SerializeField] private bool _canMove = true;
+    [SerializeField] private LayerMask _groundLayer;
+    private bool _canDetectJump;
 
     private int _jumps;
     private Rigidbody2D _rb;
@@ -19,16 +24,33 @@ public class Movement : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _jumps = _maxJumps;
+        _boosting = false; 
     }
 
     public void Update()
     {
         Jump();
+
+        if (_jumps != _maxJumps && _canDetectJump && CheckIfGrounded())
+        {
+            _jumps = _maxJumps;
+            _canJump = true;
+        }
     }
 
     void FixedUpdate()
     {
         Move();
+        if(_boosting)
+        {
+            _boostTimer += Time.deltaTime;
+            if(_boostTimer >= _boostWillLast)
+            {
+                _speed = 500;
+                _boostTimer = 0;
+                _boosting = false;
+            }
+        }
     }
 
     public void Move()
@@ -48,6 +70,7 @@ public class Movement : MonoBehaviour
         //Guard clause. It checks the opposite of all criteria, and returns if one is true.
         if (_jumps <= 0 || !Input.GetKeyDown($"joystick {_inputNum} button " + 1) || !_canJump) { return; }
 
+        _canDetectJump = false;
         _jumps--;
         _rb.velocity = new Vector2(_rb.velocity.x, 0);
 
@@ -55,8 +78,16 @@ public class Movement : MonoBehaviour
         _rb.AddForce(transform.up * _thrust, ForceMode2D.Impulse);
         _canJump = false;
 
+
+        Invoke("CanDetectJump", 0.1f);
+
         //Calls EnableJump after 0.2 sec
         Invoke("EnableJump", 0.2f);
+    }
+
+    public void CanDetectJump()
+    {
+        _canDetectJump = true;
     }
 
     public void DisableMove()
@@ -75,13 +106,37 @@ public class Movement : MonoBehaviour
         _canJump = true;
     }
 
+    public bool CheckIfGrounded()
+    {
+        Vector2 position = transform.position;
+        Vector2 direction = Vector2.down;
+        float distance = 0.55f;
+
+        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, _groundLayer);
+        if (hit.collider != null)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     public void OnTriggerEnter2D(Collider2D other)
     {
+       
         //If player touches ground, reset jump variables
         if (other.CompareTag("Ground"))
         {
             _jumps = _maxJumps;
             _canJump = true;
+        }
+    }
+    public void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.tag == "Speedboost")
+        {
+            _boosting = true;
+            _speed = 1000;
         }
     }
 }
