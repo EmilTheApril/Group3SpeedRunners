@@ -8,20 +8,23 @@ public class PowerupManager : MonoBehaviour
     public LaserBeamShoot laserScript;
     public BananaPeelSpawner bananaScript;
     public ShootProjectile grenadeScript;
-    public string uiName;
+    public string uiName = "";
     public int _randomNumber;
+    public Movement movement;
 
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("PowerupBox"))
         {
-            if (other.transform.root.GetComponent<Movement>()._inputNum == "1")
+            if (movement._inputNum == "1")
             {
                 uiName = " Red";
             }
             else uiName = " Blue";
 
-            //ChangeImg();
+            ChangeImg();
+            GiveUpgrade();
         }
     }
     public void GiveUpgrade()
@@ -41,14 +44,11 @@ public class PowerupManager : MonoBehaviour
         case 2:
                 laserScript.canUse = true;
             break;
-        case 3:
-
-            break;
         default:
             Debug.Log("Error");
             break;
         }
-         
+        
     }
 
         public void ChangeImg()

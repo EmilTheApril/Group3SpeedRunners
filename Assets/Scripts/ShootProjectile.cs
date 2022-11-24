@@ -6,15 +6,16 @@ using UnityEngine;
 public class ShootProjectile : MonoBehaviour
 
 {
+
     public GameObject ProjectilePrefab;
     public bool canUse = false;
 
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.D)) 
+        if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.D) && (canUse == true)) 
             Fire(1,-60);
-        if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.A)) 
+        if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.A) && (canUse == true)) 
             Fire(-1,60);
     }
 
@@ -26,5 +27,6 @@ public class ShootProjectile : MonoBehaviour
         GameObject Bullet = Instantiate(ProjectilePrefab, spawnPos, Quaternion.identity);
         Bullet.GetComponent<Projectile>().dir = dir;
         Bullet.transform.Rotate(0,0,angle);
+        canUse = false;
     }
 }
