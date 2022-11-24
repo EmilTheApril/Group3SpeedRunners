@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    private GameObject[] players;
+    [SerializeField] private GameObject[] _points;
 
-    public void Start()
-    {
-        players = GameObject.FindGameObjectsWithTag("Player");
-    }
+    private int _playerInFirstPlace;
+    private int _pointsReachedPlayer1 = 0;
+    private int _pointsReachedPlayer2 = 0;
+    [SerializeField] private GameObject[] _players;
 
     public void Update()
     {
@@ -18,14 +18,70 @@ public class CameraMovement : MonoBehaviour
 
     public Vector3 FindCameraPosition()
     {
-        Vector3 pos = new Vector3(0, 0, -10);
+        Vector3 Pos = new Vector3(0, 0, -10);
 
-        foreach (GameObject player in players)
+        foreach (GameObject player in _players)
         {
-            pos.x += player.transform.position.x;
-            pos.y += player.transform.position.y;
+            Pos.x += player.transform.position.x;
+            Pos.y += player.transform.position.y;
+        }
+        int firstPlacePlayer = FindPlayerInFirstPlace();
+        Debug.Log("index: " + firstPlacePlayer);
+        Pos.x += _players[firstPlacePlayer].transform.position.x;
+        Pos.y += _players[firstPlacePlayer].transform.position.y;
+
+        return new Vector3(Pos.x/(_players.Length + 1), Pos.y/(_players.Length + 1), Pos.z);
+    }
+
+    public int FindPlayerInFirstPlace()
+    {
+        float Player1Dist = Vector2.Distance(_points[_pointsReachedPlayer1].transform.position, _players[0].transform.position);
+        float Player2Dist = Vector2.Distance(_points[_pointsReachedPlayer2].transform.position, _players[1].transform.position);
+
+        Debug.Log(Player1Dist + " : " + Player2Dist);
+
+        //Both at same checkpoint
+        if (_pointsReachedPlayer1 == _pointsReachedPlayer2)
+        {
+            //Player 1 in first
+            if (Player1Dist < Player2Dist)
+            {
+                return 0;
+            }
+            //Player 2 in first
+            else
+            {
+                return 1;
+            }
+        }
+        //Player 1 i first
+        else if(_pointsReachedPlayer1 > _pointsReachedPlayer2)
+        {
+            return 0;
+        }
+        //Player 2 in first
+        else if (_pointsReachedPlayer1 < _pointsReachedPlayer2)
+        {
+            return 1;
         }
 
-        return new Vector3(pos.x/players.Length, pos.y/players.Length, pos.z);
+        if (Player1Dist <= 3f)
+        {
+            if (_pointsReachedPlayer1 < _points.Length)
+            {
+                _pointsReachedPlayer1++;
+            }
+            else _pointsReachedPlayer1 = 0;
+        }
+
+        if (Player2Dist <= 3f)
+        {
+            if (_pointsReachedPlayer2 < _points.Length)
+            {
+                _pointsReachedPlayer2++;
+            }
+            else _pointsReachedPlayer2 = 0;
+        }
+        return 0;
     }
 }
