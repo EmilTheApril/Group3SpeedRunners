@@ -6,6 +6,7 @@ public class BananaPeelSpawner : MonoBehaviour
 {
 
     [SerializeField] private GameObject _bananaPrefab;
+    public bool canUse = false;
 
     void Update()
     {
