@@ -11,6 +11,14 @@ public class Projectile : MonoBehaviour
     public float radius;
     public float explosionForce;
     public GameObject pickupEffect;
+    public Rigidbody2D rb;
+    public int dir = 0;
+
+
+    public void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     private void Update()
     {

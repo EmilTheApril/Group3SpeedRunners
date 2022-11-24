@@ -7,9 +7,12 @@ public class Movement : MonoBehaviour
     //SerializeField does so you can edit an private variable in the inspector.
     [SerializeField] private float _speed;
     [SerializeField] private float _thrust;
+    [SerializeField] private float _boostTimer;
+    [SerializeField] private float _boostWillLast;
     [SerializeField] private int _maxJumps;
     [SerializeField] private string _inputNum;
     [SerializeField] private bool _canJump;
+    [SerializeField] private bool _boosting;
     [SerializeField] private bool _canMove = true;
     [SerializeField] private LayerMask _groundLayer;
     private bool _canDetectJump;
@@ -21,6 +24,7 @@ public class Movement : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _jumps = _maxJumps;
+        _boosting = false; 
     }
 
     public void Update()
@@ -37,6 +41,16 @@ public class Movement : MonoBehaviour
     void FixedUpdate()
     {
         Move();
+        if(_boosting)
+        {
+            _boostTimer += Time.deltaTime;
+            if(_boostTimer >= _boostWillLast)
+            {
+                _speed = 500;
+                _boostTimer = 0;
+                _boosting = false;
+            }
+        }
     }
 
     public void Move()
@@ -109,11 +123,20 @@ public class Movement : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
+       
         //If player touches ground, reset jump variables
         if (other.CompareTag("Ground"))
         {
             _jumps = _maxJumps;
             _canJump = true;
+        }
+    }
+    public void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.tag == "Speedboost")
+        {
+            _boosting = true;
+            _speed = 1000;
         }
     }
 }
