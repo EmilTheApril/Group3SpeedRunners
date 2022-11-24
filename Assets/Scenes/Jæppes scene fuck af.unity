@@ -20455,6 +20455,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProjectilePrefab: {fileID: 1619184697638583889, guid: dc30e7e47fed2ae46aed30429f10125e, type: 3}
+--- !u!114 &84295944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84295922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e3c3925066a0c24f85215399ae2da02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LaserBeamPrefab: {fileID: 6367227653041009974, guid: cca8083c23b71554aa2358f583b04975, type: 3}
 --- !u!1001 &167198573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21587,7 +21600,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2090330031}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9eb672520b4414f59922e9cc2d34a1da, type: 3}
   m_Name: 
