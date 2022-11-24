@@ -160,6 +160,6 @@ MonoBehaviour:
   useUpgrade: 32
   radius: 10
   explosionForce: 50
-  pickupEffect: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
+  pickupEffect: {fileID: 2494970462888539376, guid: 429085864dea40b48869c7f5c607d34e, type: 3}
   rb: {fileID: 0}
   dir: 0

@@ -13,6 +13,9 @@ public static class SoundManager // a class that is responsible for playing all 
         Blast,
         GameOver,
         Electricity,
+        Appeal,
+        Grenade,
+        Laser
     }
     public static void PlaySound(Sound sound) //function to play a single sound 
     {

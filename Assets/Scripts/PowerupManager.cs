@@ -10,6 +10,7 @@ public class PowerupManager : MonoBehaviour
     public string uiName;
     public int _randomNumber;
     public Movement movement;
+    private bool hasChanged = false;
 
     private void Update()
     {
@@ -54,13 +55,22 @@ public class PowerupManager : MonoBehaviour
         
     }
 
-        public void ChangeImg()
+    public void ChangeImg()
+    {
+        if (!hasChanged)
         {
             int rand = Random.Range(0, 3);
             GameObject.Find("Upgrade icon" + uiName).GetComponent<ImageUIPowerup>().imgNumberCount = rand;
             GameObject.Find("Upgrade icon" + uiName).GetComponent<ImageUIPowerup>().ChangeImage();
             _randomNumber = rand;
+            hasChanged = true;
+            Invoke("EnableChange", 0.2f);
         }
-    
+    }
+
+    public void EnableChange()
+    {
+        hasChanged = false;
+    }
 }
 

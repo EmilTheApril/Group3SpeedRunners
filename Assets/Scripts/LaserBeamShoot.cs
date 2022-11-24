@@ -24,11 +24,11 @@ public class LaserBeamShoot : MonoBehaviour
     
     public void Shoot(int dir)
     {
-        
-            Vector2 spawnPos = new Vector2(transform.position.x + (dir * 4f), (transform.position.y+1));
-            GameObject Laser = Instantiate(LaserBeamPrefab, spawnPos, Quaternion.identity);
-            Laser.GetComponent<LaserBeam>().dir = dir;
-            canUse = false;
+        SoundManager.PlaySound(SoundManager.Sound.Blast);
+        Vector2 spawnPos = new Vector2(transform.position.x + (dir * 4f), (transform.position.y+1));
+        GameObject Laser = Instantiate(LaserBeamPrefab, spawnPos, Quaternion.identity);
+        Laser.GetComponent<LaserBeam>().dir = dir;
+        canUse = false;
     }
 
 

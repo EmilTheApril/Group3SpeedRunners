@@ -19,12 +19,15 @@ public class ImageUIPowerup : MonoBehaviour
         {
 
             case 0:
+                SoundManager.PlaySound(SoundManager.Sound.Appeal);
                 GetComponent<Image>().sprite = banana;
                 break;
             case 1:
+                SoundManager.PlaySound(SoundManager.Sound.Grenade);
                 GetComponent<Image>().sprite = grenade;
                 break;
             case 2:
+                SoundManager.PlaySound(SoundManager.Sound.Laser);
                 GetComponent<Image>().sprite = laser;
                 break;
             case 3:
