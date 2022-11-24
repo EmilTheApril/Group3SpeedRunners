@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -80,6 +81,12 @@ public class Movement : MonoBehaviour
         //Gets Horizontal input (A, D, Left Arrow, Right Arrow, Joy stick X Axis)
         float Horizontal = Input.GetAxisRaw("Horizontal" + _inputNum);
 
+        if (Horizontal < 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else GetComponent<SpriteRenderer>().flipX = false;
+
         //Sets velocity to horizontal axis direction * speed. Horizontal = -1 when A is pressed and 1 when D is pressed.
         if (!_canMove) { return false; }
         _rb.velocity = new Vector2(Horizontal * transform.right.x * _speed * Time.deltaTime, _rb.velocity.y);
@@ -94,7 +101,8 @@ public class Movement : MonoBehaviour
     public void Jump()
     {
         //Guard clause. It checks the opposite of all criteria, and returns if one is true.
-        if (_jumps <= 0 || !Input.GetKeyDown($"joystick {_inputNum} button " + 1) || !_canJump) { return; }
+        if (!_canJump || _jumps <= 0) { return; }
+        if (!Input.GetKeyDown($"joystick {_inputNum} button " + 1)) { return; }
         SoundManager.PlaySound(SoundManager.Sound.Jump);
 
         _canDetectJump = false;
@@ -117,15 +125,21 @@ public class Movement : MonoBehaviour
         _canDetectJump = true;
     }
 
-    public void DisableMove()
+    public void DisableMove(float time)
     {
         _canMove = false;
-        Invoke("EnableMove", 1f);
+        Invoke("EnableMove", time);
     }
 
     public void EnableMove()
     {
         _canMove = true;
+    }
+
+    public void DisableJump(float time)
+    {
+        _canJump = false;
+        Invoke("EnableJump", time);
     }
 
     public void EnableJump()
@@ -167,5 +181,11 @@ public class Movement : MonoBehaviour
             _boosting = true;
             _speed = 1000;
         }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("laser"))
+            DisableMove();
     }
 }
