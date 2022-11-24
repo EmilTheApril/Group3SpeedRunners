@@ -127,3 +127,4 @@ MonoBehaviour:
   pickupEffect: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
   imgScript: {fileID: 0}
   uiName: 
+  BoxExpAni: {fileID: 4300413549383528644, guid: af62cb467f0a4f0428bc01f9ae1fe056, type: 3}
