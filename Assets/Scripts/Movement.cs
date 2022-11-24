@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -180,5 +181,11 @@ public class Movement : MonoBehaviour
             _boosting = true;
             _speed = 1000;
         }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("laser"))
+            DisableMove();
     }
 }

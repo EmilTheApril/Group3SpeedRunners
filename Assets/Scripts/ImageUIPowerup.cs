@@ -9,21 +9,9 @@ public class ImageUIPowerup : MonoBehaviour
     public Sprite banana;
     public Sprite grenade;
     public Sprite laser;
-
+    public Sprite questionMark;
     public PowerUpBox boxScript;
     public int imgNumberCount;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void ChangeImage()
     {
@@ -38,6 +26,9 @@ public class ImageUIPowerup : MonoBehaviour
                 break;
             case 2:
                 GetComponent<Image>().sprite = laser;
+                break;
+            case 3:
+                GetComponent<Image>().sprite = questionMark;
                 break;
             default:
                 Debug.Log("Error");
