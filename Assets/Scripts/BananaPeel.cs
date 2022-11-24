@@ -17,9 +17,10 @@ public class BananaPeel : MonoBehaviour
         if(collision.collider.tag == _playerTag)
         {
             //Instantiates the _smokeEffect gameobject at the position of the prefab
-            Instantiate(_smokeEffect, transform.position, transform.rotation);
+            GameObject _smoke = Instantiate(_smokeEffect, transform.position, transform.rotation);
             //Destroys the object this script is attached to
             Destroy(this.gameObject);
+            Destroy(_smoke, 2f);
 
         }
 

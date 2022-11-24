@@ -10,11 +10,12 @@ public class Movement : MonoBehaviour
     [SerializeField] private float _boostTimer;
     [SerializeField] private float _boostWillLast;
     [SerializeField] private int _maxJumps;
-    [SerializeField] private string _inputNum;
     [SerializeField] private bool _canJump;
     [SerializeField] private bool _boosting;
     [SerializeField] private bool _canMove = true;
     [SerializeField] private LayerMask _groundLayer;
+    public string _inputNum;
+    private Animator anim;
     private bool _canDetectJump;
 
     private int _jumps;
@@ -24,12 +25,24 @@ public class Movement : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _jumps = _maxJumps;
-        _boosting = false; 
+        _boosting = false;
+        anim = GetComponent<Animator>();
     }
 
     public void Update()
     {
         Jump();
+
+        if (_rb.velocity.y > 0.1f)
+        {
+            anim.SetBool("isRunning", false);
+            anim.SetBool("isAirborne", true);
+        }
+        else if (_rb.velocity.x == 0 && _rb.velocity.y == 0)
+        {
+            anim.SetBool("isRunning", false);
+            anim.SetBool("isAirborne", false);
+        }
 
         if (_jumps != _maxJumps && _canDetectJump && CheckIfGrounded())
         {
@@ -40,7 +53,16 @@ public class Movement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Move();
+        if (Move())
+        {
+            anim.SetBool("isRunning", true);
+            anim.SetBool("isAirborne", false);
+        } else
+        {
+            anim.SetBool("isRunning", false);
+        }
+
+
         if(_boosting)
         {
             _boostTimer += Time.deltaTime;
@@ -53,15 +75,19 @@ public class Movement : MonoBehaviour
         }
     }
 
-    public void Move()
+    public bool Move()
     {
         //Gets Horizontal input (A, D, Left Arrow, Right Arrow, Joy stick X Axis)
         float Horizontal = Input.GetAxisRaw("Horizontal" + _inputNum);
 
         //Sets velocity to horizontal axis direction * speed. Horizontal = -1 when A is pressed and 1 when D is pressed.
-        if (!_canMove) { return; }
-
+        if (!_canMove) { return false; }
         _rb.velocity = new Vector2(Horizontal * transform.right.x * _speed * Time.deltaTime, _rb.velocity.y);
+        if (Horizontal == 0)
+        {
+            return false;
+        }
+        else return true;
     }
 
     //Makes player jump
@@ -116,6 +142,7 @@ public class Movement : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, _groundLayer);
         if (hit.collider != null)
         {
+            anim.SetBool("isAirborne", false);
             return true;
         }
 
