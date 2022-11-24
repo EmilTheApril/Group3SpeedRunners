@@ -8,7 +8,7 @@ public class LaserBeamShoot : MonoBehaviour
     
 
     
-    // Start is called before the first frame update
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.K) && Input.GetKey(KeyCode.D)) 

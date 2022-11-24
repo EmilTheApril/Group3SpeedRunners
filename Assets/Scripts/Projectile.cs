@@ -44,7 +44,6 @@ public class Projectile : MonoBehaviour
                     {
                         hit.GetComponent<Movement>().DisableMove();
                     }
-
                     Vector2 dir = (hit.transform.position - transform.position);
                     dir.Normalize();
                     rb.AddForce(dir * explosionForce, ForceMode2D.Force);
@@ -53,6 +52,9 @@ public class Projectile : MonoBehaviour
                     // Destroy object after 2f
                     Destroy(expl, 2f);
                 }
+
+                
+
             }
     }
 
