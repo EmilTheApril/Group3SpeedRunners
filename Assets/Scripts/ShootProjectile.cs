@@ -13,10 +13,17 @@ public class ShootProjectile : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.D) && (canUse == true)) 
-            Fire(1,-60);
-        if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.A) && (canUse == true)) 
-            Fire(-1,60);
+        int dir = 0;
+        if (GetComponent<SpriteRenderer>().flipX)
+        {
+            dir = -1;
+        }
+        else dir = 1;
+
+        if (Input.GetKeyDown(KeyCode.Space) && dir == 1 && (canUse == true))
+            Fire(dir, -60);
+        if (Input.GetKeyDown(KeyCode.Space) && dir == -1 && (canUse == true))
+            Fire(dir, 60);
     }
 
 

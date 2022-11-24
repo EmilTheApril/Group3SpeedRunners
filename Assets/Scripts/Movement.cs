@@ -85,7 +85,7 @@ public class Movement : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().flipX = true;
         }
-        else GetComponent<SpriteRenderer>().flipX = false;
+        else if (Horizontal > 0) GetComponent<SpriteRenderer>().flipX = false;
 
         //Sets velocity to horizontal axis direction * speed. Horizontal = -1 when A is pressed and 1 when D is pressed.
         if (!_canMove) { return false; }

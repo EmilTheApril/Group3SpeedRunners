@@ -13,13 +13,11 @@ public class LaserBeamShoot : MonoBehaviour
         int dir = 0;
         if (GetComponent<SpriteRenderer>().flipX)
         {
-            dir = 1;
+            dir = -1;
         }
-        else dir = -1;
+        else dir = 1;
 
         if (Input.GetKeyDown(KeyCode.Space) && (canUse == true))
-            Shoot(dir);
-        if (Input.GetKeyDown(KeyCode.Space) && (canUse == true)) 
             Shoot(dir);
     }
 
