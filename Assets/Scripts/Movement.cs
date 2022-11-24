@@ -14,6 +14,8 @@ public class Movement : MonoBehaviour
     [SerializeField] private bool _canJump;
     [SerializeField] private bool _boosting;
     [SerializeField] private bool _canMove = true;
+    [SerializeField] private LayerMask _groundLayer;
+    private bool _canDetectJump;
 
     private int _jumps;
     private Rigidbody2D _rb;
@@ -28,6 +30,12 @@ public class Movement : MonoBehaviour
     public void Update()
     {
         Jump();
+
+        if (_jumps != _maxJumps && _canDetectJump && CheckIfGrounded())
+        {
+            _jumps = _maxJumps;
+            _canJump = true;
+        }
     }
 
     void FixedUpdate()
@@ -62,6 +70,7 @@ public class Movement : MonoBehaviour
         //Guard clause. It checks the opposite of all criteria, and returns if one is true.
         if (_jumps <= 0 || !Input.GetKeyDown($"joystick {_inputNum} button " + 1) || !_canJump) { return; }
 
+        _canDetectJump = false;
         _jumps--;
         _rb.velocity = new Vector2(_rb.velocity.x, 0);
 
@@ -69,8 +78,16 @@ public class Movement : MonoBehaviour
         _rb.AddForce(transform.up * _thrust, ForceMode2D.Impulse);
         _canJump = false;
 
+
+        Invoke("CanDetectJump", 0.1f);
+
         //Calls EnableJump after 0.2 sec
         Invoke("EnableJump", 0.2f);
+    }
+
+    public void CanDetectJump()
+    {
+        _canDetectJump = true;
     }
 
     public void DisableMove()
@@ -87,6 +104,21 @@ public class Movement : MonoBehaviour
     public void EnableJump()
     {
         _canJump = true;
+    }
+
+    public bool CheckIfGrounded()
+    {
+        Vector2 position = transform.position;
+        Vector2 direction = Vector2.down;
+        float distance = 0.55f;
+
+        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, _groundLayer);
+        if (hit.collider != null)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     public void OnTriggerEnter2D(Collider2D other)

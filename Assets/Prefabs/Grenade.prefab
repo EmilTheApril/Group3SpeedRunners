@@ -100,11 +100,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30af2c81c8f25744491ea94de8642d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 15
   useUpgrade: 32
   radius: 10
   explosionForce: 1500
   pickupEffect: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
+  rb: {fileID: 0}
+  dir: 0
 --- !u!58 &-7682418612584258027
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -159,3 +161,5 @@ MonoBehaviour:
   radius: 10
   explosionForce: 50
   pickupEffect: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
+  rb: {fileID: 0}
+  dir: 0

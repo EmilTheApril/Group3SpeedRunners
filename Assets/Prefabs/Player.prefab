@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7970889993434089850}
   - component: {fileID: 7749314381257997620}
   - component: {fileID: 6529009049582392531}
+  - component: {fileID: 4239005500790596252}
   - component: {fileID: 7970889993434089851}
   - component: {fileID: -1042588883097641190}
   - component: {fileID: 604827483595715801}
@@ -257,6 +258,26 @@ DistanceJoint2D:
   m_AutoConfigureDistance: 1
   m_Distance: 32.740166
   m_MaxDistanceOnly: 0
+--- !u!95 &4239005500790596252
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7970889993434089848}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &7970889993434089851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,6 +296,9 @@ MonoBehaviour:
   _inputNum: 1
   _canJump: 0
   _canMove: 1
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &-1042588883097641190
 MonoBehaviour:
   m_ObjectHideFlags: 0
