@@ -20,7 +20,7 @@ public class BananaPeel : MonoBehaviour
             Instantiate(_smokeEffect, transform.position, transform.rotation);
             //Destroys the object this script is attached to
             Destroy(this.gameObject);
-            Debug.Log("A-PEEL'D!");
+
         }
 
     }
