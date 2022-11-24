@@ -18,6 +18,7 @@ public class PowerUpBox : MonoBehaviour
         // Removes gameObject temporarily
         gameObject.SetActive(false);
         GameObject BoxExpAni = Instantiate(this.BoxExpAni, transform.position, transform.rotation);
+        Destroy(BoxExpAni, BoxExpAni.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0).Length);
         // Respawner
         Invoke("Respawn", 3f);
 
