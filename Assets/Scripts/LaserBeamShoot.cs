@@ -21,7 +21,7 @@ public class LaserBeamShoot : MonoBehaviour
     
     public void Shoot(int dir)
     {
-        
+            
             Vector2 spawnPos = new Vector2(transform.position.x + (dir * 2.5f), transform.position.y);
             GameObject Laser = Instantiate(LaserBeamPrefab, spawnPos, Quaternion.identity);
             Laser.GetComponent<LaserBeam>().dir = dir;
