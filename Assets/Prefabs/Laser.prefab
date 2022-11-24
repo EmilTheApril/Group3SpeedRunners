@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c3f746cbaffa9e4788dec2655819005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  freezeEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
-  force: 300
+  freezeEffect: {fileID: 1055923699059965794, guid: 77b550b3d93a5c24ab62b4b9905ccf99, type: 3}
+  force: 200
   rb: {fileID: 0}
   dir: 0
 --- !u!61 &-3689883025186484722
