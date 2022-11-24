@@ -8,7 +8,7 @@ public class ScoreText : MonoBehaviour
 {
     public TextMeshProUGUI textDisplay;
 
-    private void Update()
+    public void Update()
     {
         DisplayScore();
     }

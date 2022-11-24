@@ -42,7 +42,7 @@ public class Projectile : MonoBehaviour
                 {
                     if (hit.GetComponent<Movement>() != null)
                     {
-                        hit.GetComponent<Movement>().DisableMove();
+                        hit.GetComponent<Movement>().DisableMove(1);
                     }
                     Vector2 dir = (hit.transform.position - transform.position);
                     dir.Normalize();
