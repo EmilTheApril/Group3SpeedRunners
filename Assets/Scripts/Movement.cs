@@ -186,6 +186,6 @@ public class Movement : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("laser"))
-            DisableMove();
+            DisableMove(1);
     }
 }

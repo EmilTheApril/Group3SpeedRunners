@@ -23463,7 +23463,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5
+  m_text: 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1e0d12b6c13cb1746bc8819be6684509, type: 2}
   m_sharedMaterial: {fileID: 7861568241000308997, guid: 1e0d12b6c13cb1746bc8819be6684509, type: 2}
@@ -24225,5 +24225,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameAssets
       objectReference: {fileID: 0}
+    - target: {fileID: 1500076424056968861, guid: 21d4befa0016d4eea9b0c8bb2e27a88f, type: 3}
+      propertyPath: soundAudioClipArray.Array.data[0].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f2ae98eec6ab244808c191c524d10174, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21d4befa0016d4eea9b0c8bb2e27a88f, type: 3}
