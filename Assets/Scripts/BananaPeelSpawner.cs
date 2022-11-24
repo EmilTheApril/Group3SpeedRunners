@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class BananaPeelSpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+    [SerializeField] private GameObject _bananaPrefab;
+
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.K) && Input.GetKey(KeyCode.D)) 
+            BananaLauncher(-1);
+        if (Input.GetKeyDown(KeyCode.K) && Input.GetKey(KeyCode.A)) 
+            BananaLauncher(1);
     }
+    public void BananaLauncher(int _direction)
+    {
+        Vector2 _spawner = new Vector2(transform.position.x + (_direction * 2f), transform.position.y);
+        Instantiate(_bananaPrefab, _spawner, Quaternion.identity);
+    }
+
 }
