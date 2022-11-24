@@ -82,12 +82,13 @@ public class CameraMovement : MonoBehaviour
                 return 1;
             }
         }
-        //Player 1 i first
+
+        //Player 1 is first
         else if(_pointsReachedPlayer1 > _pointsReachedPlayer2)
         {
             return 0;
         }
-        //Player 2 in first
+        //Player 2 is first
         else if (_pointsReachedPlayer1 < _pointsReachedPlayer2)
         {
             return 1;

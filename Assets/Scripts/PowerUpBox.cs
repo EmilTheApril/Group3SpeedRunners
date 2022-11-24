@@ -24,13 +24,8 @@ public class PowerUpBox : MonoBehaviour
         // If a player enters the collider pickup the object
         if (other.CompareTag("Player"))
         {
-            if (other.transform.root.GetComponent<Movement>()._inputNum == "1")
-            {
-                uiName = " Red";
-            } else uiName = " Blue";
 
             Pickup();
-            ChangeImg();
         }
     }
 
@@ -38,20 +33,11 @@ public class PowerUpBox : MonoBehaviour
     {
         Debug.Log("Powerup picked up");
 
-        // Apply random upgrade to player
-        // INSERT UPGRADES HERE
-
     }
     // Respawn object
     public void Respawn()
     {
         gameObject.SetActive(true);
     }
-    public void ChangeImg()
-    {
-        int rand = Random.Range(0, 3);
-        GameObject.Find("Upgrade icon" + uiName).GetComponent<ImageUIPowerup>().imgNumberCount = rand;
-        GameObject.Find("Upgrade icon" + uiName).GetComponent<ImageUIPowerup>().ChangeImage();
-        _randomNumber = rand;
-    }
+   
 }

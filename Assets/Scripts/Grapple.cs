@@ -23,10 +23,26 @@ public class Grapple : MonoBehaviour
 
     void Update()
     {
+        ShootGrapple();
         // This will constantly check if the player grapples onto a gameObject, which we will call a node for reference.
-
         NodeBehavior();
+    }
 
+    public void ShootGrapple()
+    {
+        float Horizontal = Input.GetAxisRaw("Horizontal" + GetComponent<Movement>()._inputNum);
+        float Vertical = Input.GetAxisRaw("Vertical" + GetComponent<Movement>()._inputNum);
+
+        Vector2 dir = new Vector2(Horizontal, Vertical);
+
+        if (Input.GetKeyDown($"joystick {GetComponent<Movement>()._inputNum} button " + 6))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, 1, 0), dir, Mathf.Infinity);
+            Debug.DrawRay(transform.position + new Vector3(0, 1, 0), dir, Color.red);
+
+            hit.transform.GetComponent<Node>().GrappleOn();
+        }
+        else if (Input.GetKeyUp($"joystick {GetComponent<Movement>()._inputNum} button " + 6)) DeselectNode();
     }
 
     public void SelectNode(Node node) // This method will let the player select a node to grapple onto. The Node is the type we wish to use.
