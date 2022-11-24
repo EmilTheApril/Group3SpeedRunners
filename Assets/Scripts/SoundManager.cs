@@ -12,6 +12,7 @@ public static class SoundManager // a class that is responsible for playing all 
         Jump,
         Blast,
         GameOver,
+        Electricity,
     }
     public static void PlaySound(Sound sound) //function to play a single sound 
     {
@@ -32,5 +33,4 @@ public static class SoundManager // a class that is responsible for playing all 
         return null;
     }
 
-    //public static void AddButtonSounds(this Button_UI )
 }

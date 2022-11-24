@@ -16,7 +16,7 @@ public class GameAssets : MonoBehaviour
 
     public SoundAudioClip[] soundAudioClipArray;
 
-    [System.Serializable] // to make it show up in the editor
+    [System.Serializable] // to make it show in the editor
     public class SoundAudioClip // to store both an audio clip and a sound
     {
         public SoundManager.Sound sound;

@@ -95,6 +95,7 @@ public class Movement : MonoBehaviour
     {
         //Guard clause. It checks the opposite of all criteria, and returns if one is true.
         if (_jumps <= 0 || !Input.GetKeyDown($"joystick {_inputNum} button " + 1) || !_canJump) { return; }
+        SoundManager.PlaySound(SoundManager.Sound.Jump);
 
         _canDetectJump = false;
         _jumps--;
