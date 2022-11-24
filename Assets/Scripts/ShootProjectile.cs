@@ -7,7 +7,7 @@ public class ShootProjectile : MonoBehaviour
 
 {
     public GameObject ProjectilePrefab;
-    
+    public bool canUse = false;
 
 
     private void Update()
