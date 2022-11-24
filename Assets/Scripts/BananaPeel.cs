@@ -6,20 +6,21 @@ using UnityEngine;
 //
 public class BananaPeel : MonoBehaviour
 {        
-    public GameObject smokeEffect;
-    [SerializeField] private string playerTag = "Player";
+    public GameObject _smokeEffect;
+    [SerializeField] private string _playerTag = "Player";
 
     
     //Method to detect collision. On collision, this object is destroyed and smoke animation plays.
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Checks if the object colliding with this one, has the tag "Player"
-        if(collision.collider.tag == playerTag)
+        if(collision.collider.tag == _playerTag)
         {
-            //Instantiates the smokeEffect gameobject at the position of the prefab
-            Instantiate(smokeEffect, transform.position, transform.rotation);
+            //Instantiates the _smokeEffect gameobject at the position of the prefab
+            Instantiate(_smokeEffect, transform.position, transform.rotation);
             //Destroys the object this script is attached to
             Destroy(this.gameObject);
+            Debug.Log("A-PEEL'D!");
         }
 
     }
