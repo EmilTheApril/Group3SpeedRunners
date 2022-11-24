@@ -20,7 +20,7 @@ public class Node : MonoBehaviour
         node = null;
     }
 
-    public void OnMouseDown() // This method runs the action for when a node is selected.
+    public void GrappleOn() // This method runs the action for when a node is selected.
     {
         // The node clicked on will be set to this particular node gameObject.
         node = this;
@@ -31,7 +31,7 @@ public class Node : MonoBehaviour
 
     }
 
-    public void OnMouseUp() // This method runs the action for when no node is selected.
+    public void GrappleOff() // This method runs the action for when no node is selected.
     {
         // No node will be clicked anymore, therefore it is sat to null.
         node = null;
