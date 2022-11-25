@@ -15,7 +15,8 @@ public static class SoundManager // a class that is responsible for playing all 
         Electricity,
         Appeal,
         Grenade,
-        Laser
+        Laser,
+        Missile
     }
     public static void PlaySound(Sound sound) //function to play a single sound 
     {
