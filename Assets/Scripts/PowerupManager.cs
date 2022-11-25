@@ -17,7 +17,7 @@ public class PowerupManager : MonoBehaviour
     {
         if (Input.GetKeyDown($"joystick {GetComponent<Movement>()._inputNum} button " + 2))
         {
-            GameObject.Find("Upgrade icon" + uiName).GetComponent<ImageUIPowerup>().imgNumberCount = 4;
+            GameObject.Find("Upgrade icon" + uiName).GetComponent<ImageUIPowerup>().imgNumberCount = 3;
             GameObject.Find("Upgrade icon" + uiName).GetComponent<ImageUIPowerup>().ChangeImage();
         }
     }
