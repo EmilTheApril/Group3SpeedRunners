@@ -7,6 +7,8 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private GameObject[] _points;
 
     private int _playerInFirstPlace;
+    private int _totalPointsReachedPlayer1 = 0;
+    private int _totalPointsReachedPlayer2 = 0;
     private int _pointsReachedPlayer1 = 0;
     private int _pointsReachedPlayer2 = 0;
     [SerializeField] private float _maxZoom;
@@ -55,6 +57,7 @@ public class CameraMovement : MonoBehaviour
             if (_pointsReachedPlayer1 < (_points.Length - 1))
             {
                 _pointsReachedPlayer1++;
+                _totalPointsReachedPlayer1++;
             }
             else _pointsReachedPlayer1 = 0;
         }
@@ -64,12 +67,13 @@ public class CameraMovement : MonoBehaviour
             if (_pointsReachedPlayer2 < (_points.Length - 1))
             {
                 _pointsReachedPlayer2++;
+                _totalPointsReachedPlayer2++;
             }
             else _pointsReachedPlayer2 = 0;
         }
 
         //Both at same checkpoint
-        if (_pointsReachedPlayer1 == _pointsReachedPlayer2)
+        if (_totalPointsReachedPlayer1 == _totalPointsReachedPlayer2)
         {
             //Player 1 in first
             if (Player1Dist < Player2Dist)
@@ -84,12 +88,12 @@ public class CameraMovement : MonoBehaviour
         }
 
         //Player 1 is first
-        else if(_pointsReachedPlayer1 > _pointsReachedPlayer2)
+        else if(_totalPointsReachedPlayer1 > _totalPointsReachedPlayer2)
         {
             return 0;
         }
         //Player 2 is first
-        else if (_pointsReachedPlayer1 < _pointsReachedPlayer2)
+        else if (_totalPointsReachedPlayer1 < _totalPointsReachedPlayer2)
         {
             return 1;
         }
