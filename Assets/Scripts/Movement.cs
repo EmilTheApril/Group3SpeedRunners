@@ -198,15 +198,17 @@ public class Movement : MonoBehaviour
 
     void OnBecameInvisible()
     {
-        if (GameObject.Find("CountdownText").GetComponent<CountdownToStart>().started)
-        {
-            if (_inputNum == "1")
+        if (GameObject.Find("CountdownText") != null) {
+            if (GameObject.Find("CountdownText").GetComponent<CountdownToStart>().started)
             {
-                MatchStats.instance.AddPointPlayer2();
-            }
-            else MatchStats.instance.AddPointPlayer1();
+                if (_inputNum == "1")
+                {
+                    MatchStats.instance.AddPointPlayer2();
+                }
+                else MatchStats.instance.AddPointPlayer1();
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
         }
     }
 }
