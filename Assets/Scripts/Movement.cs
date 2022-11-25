@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -195,6 +194,7 @@ public class Movement : MonoBehaviour
             _speed = 700;
         }
     }
+<<<<<<< HEAD
 
     /*void OnBecameInvisible()
     {
@@ -211,4 +211,6 @@ public class Movement : MonoBehaviour
             }
         }
     }*/
+=======
+>>>>>>> parent of 44524f1 (Build works?)
 }
