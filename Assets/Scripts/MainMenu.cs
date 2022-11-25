@@ -9,13 +9,13 @@ public class MainMenu : MonoBehaviour
     {
         if (Input.GetKeyDown($"joystick {1} button " + 1))
         {
-            SceneManager.LoadScene("Level Emil");
+            StartGame(1);
         }
     }
 
-    public void StartGame()
+    public void StartGame(int index)
     {
-        SceneManager.LoadScene("Level Emil");
+        SceneManager.LoadScene(index);
     }
 
     public void ExitButton()
