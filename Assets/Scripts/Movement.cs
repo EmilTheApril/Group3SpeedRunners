@@ -196,7 +196,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    void OnBecameInvisible()
+    /*void OnBecameInvisible()
     {
         if (GameObject.Find("CountdownText") != null) {
             if (GameObject.Find("CountdownText").GetComponent<CountdownToStart>().started)
@@ -210,5 +210,5 @@ public class Movement : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
-    }
+    }*/
 }

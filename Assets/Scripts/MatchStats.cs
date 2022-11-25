@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [CreateAssetMenu(fileName = "Stats")]
 
@@ -24,10 +25,12 @@ public class MatchStats : ScriptableObject
     public void AddPointPlayer1()
     {
         player1++;
+        GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>().text = $"Player 1: {player1} \nPlayer 2: {player2}";
     }
 
     public void AddPointPlayer2()
     {
         player2++;
+        GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>().text = $"Player 1: {player1} \nPlayer 2: {player2}";
     }
 }
