@@ -153,7 +153,6 @@ GameObject:
   - component: {fileID: 1814058138}
   - component: {fileID: 1814058139}
   - component: {fileID: 1814058140}
-  - component: {fileID: 737809853944667680}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -472,7 +471,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 5.9579864
+  m_Distance: 24.503584
   m_DampingRatio: 1
   m_Frequency: 1
 --- !u!114 &1814058137
@@ -490,7 +489,6 @@ MonoBehaviour:
   laserScript: {fileID: 1814058139}
   bananaScript: {fileID: 1814058138}
   grenadeScript: {fileID: 1814058140}
-  homingMisileShoot: {fileID: 737809853944667680}
   uiName: ' Blue'
   _randomNumber: 0
   movement: {fileID: 7970889993434089851}
@@ -535,20 +533,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProjectilePrefab: {fileID: 1619184697638583889, guid: dc30e7e47fed2ae46aed30429f10125e, type: 3}
-  canUse: 0
---- !u!114 &737809853944667680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7970889993434089848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f3be40cf239cbf4fba8c90942b28e52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HomingMisilePrefab: {fileID: 6292962109895636855, guid: d1c3baa01af9c67459fb166d8928cd97, type: 3}
   canUse: 0
 --- !u!1 &7970889994304708827
 GameObject:

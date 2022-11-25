@@ -6,7 +6,6 @@ using TMPro;
 public class CountdownToStart : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI countdownText;
-    public bool started = false;
 
     void Start()
     {
@@ -33,7 +32,6 @@ public class CountdownToStart : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         countdownText.text = "GOOOO";
-        started = true;
         yield return new WaitForSeconds(1f);
         countdownText.text = "";
 

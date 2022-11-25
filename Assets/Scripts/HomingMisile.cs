@@ -24,22 +24,21 @@ public class HomingMisile : MonoBehaviour
     void Update()
     {
         MoveMissile();
-        transform.up = player.transform.position - transform.position;
     }
 
     public void MoveMissile()
     {
         // Will make the misile chase player1.
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position + new Vector3(0, 1f, 0), speed * Time.deltaTime);
-
-        // Will make the misile change its rotation to always face the target
+        
+        // Will make the misile change its rotation to always face the target. 
+        transform.up = player.transform.position - transform.position;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.transform.CompareTag("Player"))
         {
-            SoundManager.PlaySound(SoundManager.Sound.MissileExplosion);
             GameObject freeze = Instantiate(freezeEffect, transform.position, transform.rotation);
             if (col.transform.GetComponent<Movement>() != null)
             {
