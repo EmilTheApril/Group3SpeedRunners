@@ -101,7 +101,7 @@ public class GunGrapple : MonoBehaviour
 
     public void ShootGrapple()
     {
-        //if (GetComponent<Movement>()._canMove)
+        if (transform.root.GetComponent<Movement>()._canMove)
         {
             float Horizontal = Input.GetAxisRaw("Horizontal" + movement._inputNum);
             float Vertical = Input.GetAxisRaw("Vertical" + movement._inputNum);

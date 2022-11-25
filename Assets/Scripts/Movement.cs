@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -192,6 +193,20 @@ public class Movement : MonoBehaviour
         {
             _boosting = true;
             _speed = 700;
+        }
+    }
+
+    void OnBecameInvisible()
+    {
+        if (GameObject.Find("CountdownText").GetComponent<CountdownToStart>().started)
+        {
+            if (_inputNum == "1")
+            {
+                MatchStats.instance.AddPointPlayer2();
+            }
+            else MatchStats.instance.AddPointPlayer1();
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
