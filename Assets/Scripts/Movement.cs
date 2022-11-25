@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -194,9 +195,8 @@ public class Movement : MonoBehaviour
             _speed = 700;
         }
     }
-<<<<<<< HEAD
 
-    void OnBecameInvisible()
+    /*void OnBecameInvisible()
     {
         if (GameObject.Find("CountdownText") != null) {
             if (GameObject.Find("CountdownText").GetComponent<CountdownToStart>().started)
@@ -210,7 +210,5 @@ public class Movement : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
-    }
-=======
->>>>>>> parent of 44524f1 (Build works?)
+    }*/
 }
