@@ -9,6 +9,7 @@ public class ImageUIPowerup : MonoBehaviour
     public Sprite banana;
     public Sprite grenade;
     public Sprite laser;
+    public Sprite missile;
     public Sprite questionMark;
  
     public int imgNumberCount;
@@ -31,6 +32,10 @@ public class ImageUIPowerup : MonoBehaviour
                 GetComponent<Image>().sprite = laser;
                 break;
             case 3:
+                SoundManager.PlaySound(SoundManager.Sound.Laser);
+                GetComponent<Image>().sprite = laser;
+                break;
+            case 4:
                 GetComponent<Image>().sprite = questionMark;
                 break;
             default:
