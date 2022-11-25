@@ -101,23 +101,26 @@ public class GunGrapple : MonoBehaviour
 
     public void ShootGrapple()
     {
-        float Horizontal = Input.GetAxisRaw("Horizontal" + movement._inputNum);
-        float Vertical = Input.GetAxisRaw("Vertical" + movement._inputNum);
-
-        SoundManager.PlaySound(SoundManager.Sound.Grapple);
-
-        Vector2 dir = new Vector2(Horizontal, Vertical);
-        dir.Normalize();
-
-        if (Input.GetKeyDown($"joystick {movement._inputNum} button " + 6))
+        if (GetComponent<Movement>()._canMove)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, 1, 0), dir, Mathf.Infinity);
-            Debug.DrawRay(transform.position + new Vector3(0, 1, 0), dir, Color.red);
+            float Horizontal = Input.GetAxisRaw("Horizontal" + movement._inputNum);
+            float Vertical = Input.GetAxisRaw("Vertical" + movement._inputNum);
 
-            grapPoint = hit.transform.position;
-            grapplePoint = hit.point;
-            grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
-            grappleRope.enabled = true;
+            SoundManager.PlaySound(SoundManager.Sound.Grapple);
+
+            Vector2 dir = new Vector2(Horizontal, Vertical);
+            dir.Normalize();
+
+            if (Input.GetKeyDown($"joystick {movement._inputNum} button " + 6))
+            {
+                RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, 1, 0), dir, Mathf.Infinity);
+                Debug.DrawRay(transform.position + new Vector3(0, 1, 0), dir, Color.red);
+
+                grapPoint = hit.transform.position;
+                grapplePoint = hit.point;
+                grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
+                grappleRope.enabled = true;
+            }
         }
         //else if (Input.GetKeyUp($"joystick {GetComponent<Movement>()._inputNum} button " + 6)) DeselectNode();
     }

@@ -13,7 +13,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private int _maxJumps;
     [SerializeField] private bool _canJump;
     [SerializeField] private bool _boosting;
-    [SerializeField] private bool _canMove = true;
+    public bool _canMove = true;
     [SerializeField] private LayerMask _groundLayer;
     public string _inputNum;
     private Animator anim;
