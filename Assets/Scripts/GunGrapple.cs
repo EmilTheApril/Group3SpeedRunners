@@ -104,7 +104,10 @@ public class GunGrapple : MonoBehaviour
         float Horizontal = Input.GetAxisRaw("Horizontal" + movement._inputNum);
         float Vertical = Input.GetAxisRaw("Vertical" + movement._inputNum);
 
+        SoundManager.PlaySound(SoundManager.Sound.Grapple);
+
         Vector2 dir = new Vector2(Horizontal, Vertical);
+        dir.Normalize();
 
         if (Input.GetKeyDown($"joystick {movement._inputNum} button " + 6))
         {

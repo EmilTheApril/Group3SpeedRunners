@@ -34,29 +34,30 @@ public class Projectile : MonoBehaviour
 
     public void Boomba()
     {
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius);
-            foreach (Collider2D hit in colliders)
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius);
+        foreach (Collider2D hit in colliders)
+        {
+            Rigidbody2D rb = hit.GetComponent<Rigidbody2D>();
+            if (rb != null)
             {
-                Rigidbody2D rb = hit.GetComponent<Rigidbody2D>();
-                if (rb != null)
+                if (hit.GetComponent<Movement>() != null)
                 {
-                    if (hit.GetComponent<Movement>() != null)
-                    {
-                        hit.GetComponent<Movement>().DisableMove(1);
-                        hit.GetComponent<Movement>().DisableJump(1);
-                    }
-                    Vector2 dir = (hit.transform.position - transform.position);
-                    dir.Normalize();
-                    rb.AddForce(dir * explosionForce, ForceMode2D.Force);
-                    // Spawn cool effect
-                    GameObject expl = Instantiate(pickupEffect, transform.position, transform.rotation);
-                    // Destroy object after 2f
-                    Destroy(expl, 2f);
+                    hit.GetComponent<Movement>().DisableMove(1);
+                    hit.GetComponent<Movement>().DisableJump(1);
                 }
+                Vector2 dir = (hit.transform.position - transform.position);
+                dir.Normalize();
+                rb.AddForce(dir * explosionForce, ForceMode2D.Force);
+                // Spawn cool effect
+                GameObject expl = Instantiate(pickupEffect, transform.position, transform.rotation);
+                SoundManager.PlaySound(SoundManager.Sound.Explosion);
+                // Destroy object after 2f
+                Destroy(expl, 2f);
+            }
 
                 
 
-            }
+        }
     }
 
 }

@@ -24,6 +24,7 @@ public class LaserBeam : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
+        SoundManager.PlaySound(SoundManager.Sound.Electricity);
         GameObject freeze = Instantiate(freezeEffect, transform.position, transform.rotation);
         if (col.transform.GetComponent<Movement>() != null)
         {

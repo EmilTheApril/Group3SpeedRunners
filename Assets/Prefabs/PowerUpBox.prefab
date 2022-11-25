@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2734979905605607944}
   - component: {fileID: 2734979905605607947}
-  - component: {fileID: 2734979905605607946}
+  - component: {fileID: 4083974556532976533}
   - component: {fileID: 2734979905605607957}
   m_Layer: 0
   m_Name: PowerUpBox
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &2734979905605607946
+--- !u!61 &4083974556532976533
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,8 +110,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0.1
+  m_Size: {x: 0.4, y: 0.4}
+  m_EdgeRadius: 0
 --- !u!114 &2734979905605607957
 MonoBehaviour:
   m_ObjectHideFlags: 0

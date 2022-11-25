@@ -16,10 +16,13 @@ public class CountdownToStart : MonoBehaviour
     {
         countdownText.text = "3";
         SoundManager.PlaySound(SoundManager.Sound.Countdown);
-        FindObjectsOfType<Movement>()[0].DisableMove(3);
-        FindObjectsOfType<Movement>()[1].DisableMove(3);
-        FindObjectsOfType<Movement>()[0].DisableJump(3);
-        FindObjectsOfType<Movement>()[1].DisableJump(3);
+        if (FindObjectsOfType<Movement>() != null)
+        {
+            FindObjectsOfType<Movement>()[0].DisableMove(3);
+            FindObjectsOfType<Movement>()[1].DisableMove(3);
+            FindObjectsOfType<Movement>()[0].DisableJump(3);
+            FindObjectsOfType<Movement>()[1].DisableJump(3);
+        }
         yield return new WaitForSeconds(1f);
 
         countdownText.text = "2";
