@@ -16,7 +16,9 @@ public static class SoundManager // a class that is responsible for playing all 
         Appeal,
         Grenade,
         Laser,
-        Missile
+        Missile,
+        Bip,
+        MissileExplosion,
     }
     public static void PlaySound(Sound sound) //function to play a single sound 
     {
