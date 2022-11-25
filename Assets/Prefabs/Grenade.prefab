@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30af2c81c8f25744491ea94de8642d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 8
   useUpgrade: 32
   radius: 10
   explosionForce: 50
