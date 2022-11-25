@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Stats")]
-
-public class MatchStats : ScriptableObject
+public class MatchStats : MonoBehaviour
 {
     public static MatchStats instance;
 
@@ -13,6 +11,16 @@ public class MatchStats : ScriptableObject
 
     private int player1start = 0;
     private int player2start = 0;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else Destroy(this);
+    }
 
     private void OnEnable()
     {
