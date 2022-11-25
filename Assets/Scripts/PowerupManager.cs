@@ -7,6 +7,7 @@ public class PowerupManager : MonoBehaviour
     public LaserBeamShoot laserScript;
     public BananaPeelSpawner bananaScript;
     public ShootProjectile grenadeScript;
+    public HomingMisileShoot homingMisileShoot;
     public string uiName;
     public int _randomNumber;
     public Movement movement;
@@ -36,6 +37,7 @@ public class PowerupManager : MonoBehaviour
         laserScript.canUse = false;
         bananaScript.canUse = false;
         grenadeScript.canUse = false;
+        homingMisileShoot.canUse = false;
 
         switch(_randomNumber)
         {
@@ -48,6 +50,9 @@ public class PowerupManager : MonoBehaviour
         case 2:
                 laserScript.canUse = true;
             break;
+        case 3:
+            homingMisileShoot.canUse = true;
+            break;
         default:
             Debug.Log("Error");
             break;
@@ -59,7 +64,7 @@ public class PowerupManager : MonoBehaviour
     {
         if (!hasChanged)
         {
-            int rand = Random.Range(0, 3);
+            int rand = Random.Range(0, 4);
             GameObject.Find("Upgrade icon" + uiName).GetComponent<ImageUIPowerup>().imgNumberCount = rand;
             GameObject.Find("Upgrade icon" + uiName).GetComponent<ImageUIPowerup>().ChangeImage();
             _randomNumber = rand;
