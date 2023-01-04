@@ -186,6 +186,7 @@ public class Movement : MonoBehaviour
             _canJump = true;
         }
     }
+
     public void OnTriggerStay2D(Collider2D other)
     {
         if (other.tag == "Speedboost")
@@ -194,23 +195,4 @@ public class Movement : MonoBehaviour
             _speed = 700;
         }
     }
-<<<<<<< HEAD
-
-    /*void OnBecameInvisible()
-    {
-        if (GameObject.Find("CountdownText") != null) {
-            if (GameObject.Find("CountdownText").GetComponent<CountdownToStart>().started)
-            {
-                if (_inputNum == "1")
-                {
-                    MatchStats.instance.AddPointPlayer2();
-                }
-                else MatchStats.instance.AddPointPlayer1();
-
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
-        }
-    }*/
-=======
->>>>>>> parent of 44524f1 (Build works?)
 }
