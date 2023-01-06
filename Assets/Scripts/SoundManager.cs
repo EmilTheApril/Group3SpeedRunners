@@ -20,6 +20,7 @@ public static class SoundManager // a class that is responsible for playing all 
         Bip,
         MissileExplosion,
     }
+
     public static void PlaySound(Sound sound) //function to play a single sound 
     {
         GameObject soundGameObject = new GameObject("Sound"); // creating a gameobject
