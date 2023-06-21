@@ -7,7 +7,10 @@ using TMPro;
 public class ScoreText : MonoBehaviour
 {
     public TextMeshProUGUI textDisplay;
-
+    private void Start()
+    {
+  
+    }
     public void Update()
     {
         DisplayScore();

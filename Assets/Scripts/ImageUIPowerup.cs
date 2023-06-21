@@ -13,7 +13,7 @@ public class ImageUIPowerup : MonoBehaviour
     public Sprite questionMark;
  
     public int imgNumberCount;
-
+   
     public void ChangeImage()
     {
         switch (imgNumberCount)
@@ -32,8 +32,8 @@ public class ImageUIPowerup : MonoBehaviour
                 GetComponent<Image>().sprite = laser;
                 break;
             case 3:
-                SoundManager.PlaySound(SoundManager.Sound.Laser);
-                GetComponent<Image>().sprite = laser;
+                SoundManager.PlaySound(SoundManager.Sound.Missile);
+                GetComponent<Image>().sprite = missile;
                 break;
             case 4:
                 GetComponent<Image>().sprite = questionMark;
